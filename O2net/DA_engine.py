@@ -70,9 +70,18 @@ def swd(source_features, target_features, M=256):
 #from scipy.special import kl_div
 #loss = kl_div(source_features, target_features).sum()
 
-import torch.nn.functional as F
-def kldiv(source, target) :
-    kldiv = nn.KLDivLoss(reduction="batchmean")
+
+
+def kl_div(source_features, target_features) :
+    import torch.nn.functional as F
+
+    # source_features = source_features.view(-1, source_features.size(-1))
+    # target_features = target_features.view(-1, target_features.size(-1))
+    source_features = source_features.log()
+    #target_features = target_features.log()
+
+    loss = F.KLDivLoss(source_features, target_features, reduction="batchmean")
+    #loss = criterion(source_features, target_features)
     return loss
 
 ####------------------------------------------------------------------------------------------------
@@ -148,11 +157,17 @@ def train_one_epoch(model: torch.nn.Module, criterion: torch.nn.Module, args,
             mask_tgt = masks_tgt[l]
             
             domain_prob_src = F.log_softmax(domain_out_src, dim=1)
-            domain_prob_tgt = F.log_softmax(domain_out_tgt, dim=1)
+            domain_prob_tgt = F.log_softmax(domain_out_tgt, dim=1)  ##log확률로 변환 
+            
+
+            ##loss 계산 
+
             DA_img_loss_src = F.nll_loss(
                 domain_prob_src, domain_label_src, reduction="none")
             DA_img_loss_tgt = F.nll_loss(
                 domain_prob_tgt, domain_label_tgt, reduction="none")
+            
+
             mask_src = ~mask_src
             mask_tgt = ~mask_tgt
             
@@ -183,9 +198,9 @@ def train_one_epoch(model: torch.nn.Module, criterion: torch.nn.Module, args,
             loss_da += DA_img_loss
             loss_global_da += global_DA_img_loss
         loss_dict["loss_da"] = args.instance_loss_coef * loss_da + loss_global_da
-        #loss_dict["loss_wasserstein"] = swd(hs_src[-1], hs_tgt[-1])
+        loss_dict["loss_wasserstein"] = swd(hs_src[-1], hs_tgt[-1])
         ####------------------------------------------------------------------------------------------------
-        loss_dict["loss_kl"] = kl_div(hs_src[-1], hs_tgt[-1])
+        loss_dict["loss_kldiv"] = kl_div(hs_src[-1], hs_tgt[-1])
         ####------------------------------------------------------------------------------------------------
 
         losses = sum(loss_dict[k] * weight_dict[k]
