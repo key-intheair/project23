@@ -114,7 +114,7 @@ def get_args_parser():
     parser.add_argument('--instance_loss_coef', default=1, type=float)
 
     ####
-    parser.add_argument('--kl_loss_coef', default=1, type=float)
+    parser.add_argument('--kl_div_loss_coef', default=1, type=float)
     ####
     
     # dataset parameters

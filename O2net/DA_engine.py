@@ -200,9 +200,9 @@ def train_one_epoch(model: torch.nn.Module, criterion: torch.nn.Module, args,
             loss_da += DA_img_loss
             loss_global_da += global_DA_img_loss
         loss_dict["loss_da"] = args.instance_loss_coef * loss_da + loss_global_da
-        loss_dict["loss_wasserstein"] = swd(hs_src[-1], hs_tgt[-1])
+        #loss_dict["loss_wasserstein"] = swd(hs_src[-1], hs_tgt[-1])
         ####------------------------------------------------------------------------------------------------
-        loss_dict["loss_kldiv"] = kl_div(hs_src[-1], hs_tgt[-1])
+        loss_dict["loss_kl_div"] = kl_div(hs_src[-1], hs_tgt[-1])
         ####------------------------------------------------------------------------------------------------
 
         losses = sum(loss_dict[k] * weight_dict[k]
