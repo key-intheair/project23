@@ -110,7 +110,7 @@ def get_args_parser():
     parser.add_argument('--giou_loss_coef', default=2, type=float)
     parser.add_argument('--focal_alpha', default=0.25, type=float)
     parser.add_argument('--da_loss_coef', default=1, type=float)
-    #parser.add_argument('--wasserstein_loss_coef', default=1, type=float)
+    parser.add_argument('--wasserstein_loss_coef', default=1, type=float)
     parser.add_argument('--instance_loss_coef', default=1, type=float)
     parser.add_argument('--kl_loss_coef', default=1, type=float)
     ####
