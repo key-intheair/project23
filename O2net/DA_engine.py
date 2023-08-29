@@ -81,7 +81,7 @@ def kl_div(source_features, target_features) :
     source_features = F.log_softmax(source_features)
     target_features = F.softmax(target_features)
 
-    loss = F.Kl_div(source_features, target_features, reduction="batchmean")
+    loss = F.kl_div(source_features, target_features, reduction="batchmean")
     #loss = F.kl_div(q.log(), p, reduction='batchmean)
     #loss = criterion(source_features, target_features)
     return loss
