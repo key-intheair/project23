@@ -75,13 +75,13 @@ def swd(source_features, target_features, M=256):
 def kl_div(source_features, target_features) :
     import torch.nn.functional as F
 
-    # source_features = source_features.view(-1, source_features.size(-1))
-    # target_features = target_features.view(-1, target_features.size(-1))
+    #source_features = source_features.view(-1, source_features.size(-1))
+    #target_features = target_features.view(-1, target_features.size(-1))
     #source_features = source_features.log()
     source_features = F.log_softmax(source_features)
-    target_features = F.log_softmax(target_features)
+    target_features = F.softmax(target_features)
 
-    loss = F.KLDivLoss(source_features, target_features, reduction="batchmean")
+    loss = F.Kl_div(source_features, target_features, reduction="batchmean")
     #loss = F.kl_div(q.log(), p, reduction='batchmean)
     #loss = criterion(source_features, target_features)
     return loss
