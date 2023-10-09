@@ -75,9 +75,7 @@ def swd(source_features, target_features, M=256):
 def kl_div(source_features, target_features) :
     import torch.nn.functional as F
 
-    #source_features = source_features.view(-1, source_features.size(-1))
-    #target_features = target_features.view(-1, target_features.size(-1))
-    #source_features = source_features.log()
+  
     source_features = F.log_softmax(source_features, dim=1)
     target_features = F.softmax(target_features, dim=1)
 
@@ -136,8 +134,9 @@ def train_one_epoch(model: torch.nn.Module, criterion: torch.nn.Module, args,
         scores = scores[indices_object]
         boxes = boxes[indices_object]
         
-        scores_indices = (scores > 0.5) # Pseudo label selection using confidence
-        
+        #scores_indices = (scores > 0.5) # Pseudo label selection using confidence
+        scores_indices = (scores > 0.4) #ours
+
         if scores_indices.sum():
             pseudo = {'boxes': boxes[scores_indices],
                     'labels': labels[scores_indices],
