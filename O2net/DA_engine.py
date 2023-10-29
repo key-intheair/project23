@@ -134,8 +134,8 @@ def train_one_epoch(model: torch.nn.Module, criterion: torch.nn.Module, args,
         scores = scores[indices_object]
         boxes = boxes[indices_object]
         
-        #scores_indices = (scores > 0.5) # Pseudo label selection using confidence
-        scores_indices = (scores > 0.4) #ours
+        scores_indices = (scores > 0.5) # Pseudo label selection using confidence
+        #scores_indices = (scores > 0.4) #ours
 
         if scores_indices.sum():
             pseudo = {'boxes': boxes[scores_indices],
