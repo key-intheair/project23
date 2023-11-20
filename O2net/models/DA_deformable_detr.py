@@ -493,8 +493,7 @@ def DA_build(args):
         weight_dict.update(aux_weight_dict)
     weight_dict['loss_da'] = args.da_loss_coef
     #weight_dict['loss_wasserstein'] = args.wasserstein_loss_coef
-    ############
-    weight_dict['loss_kl_div'] = args.kl_loss_coef
+    weight_dict['loss_kl_div'] = args.kl_loss_coef #kl 
     losses = ['labels', 'boxes', 'cardinality']
     if args.masks:
         losses += ["masks"]

@@ -100,7 +100,7 @@ def train_one_epoch(model: torch.nn.Module, criterion: torch.nn.Module, args,
     metric_logger.add_meter('grad_norm', utils.SmoothedValue(
         window_size=1, fmt='{value:.2f}'))
     header = 'Epoch: [{}]'.format(epoch)
-    print_freq = 100
+    print_freq = 200
 
     prefetcher_src = data_prefetcher(data_loader_src, device, prefetch=True)
     prefetcher_tgt = data_prefetcher(data_loader_tgt, device, prefetch=True)
@@ -135,7 +135,7 @@ def train_one_epoch(model: torch.nn.Module, criterion: torch.nn.Module, args,
         boxes = boxes[indices_object]
         
         scores_indices = (scores > 0.5) # Pseudo label selection using confidence
-        #scores_indices = (scores > 0.4) #ours
+        #scores_indices = (scores > 0.4) #ours-score amended
 
         if scores_indices.sum():
             pseudo = {'boxes': boxes[scores_indices],
@@ -199,8 +199,8 @@ def train_one_epoch(model: torch.nn.Module, criterion: torch.nn.Module, args,
             loss_da += DA_img_loss
             loss_global_da += global_DA_img_loss
         loss_dict["loss_da"] = args.instance_loss_coef * loss_da + loss_global_da
-        loss_dict["loss_wasserstein"] = swd(hs_src[-1], hs_tgt[-1])
-        #loss_dict["loss_kl"] = kl_div(hs_src[-1], hs_tgt[-1])
+        #loss_dict["loss_wasserstein"] = swd(hs_src[-1], hs_tgt[-1])
+        loss_dict["loss_kl"] = kl_div(hs_src[-1], hs_tgt[-1])
 
         losses = sum(loss_dict[k] * weight_dict[k]
                      for k in loss_dict.keys() if k in weight_dict)

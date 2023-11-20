@@ -40,7 +40,7 @@ def get_args_parser():
     parser.add_argument('--lr_discriminator', default=0.002, type=float)
     parser.add_argument('--batch_size', default=2, type=int)
     parser.add_argument('--weight_decay', default=1e-4, type=float)
-    parser.add_argument('--epochs', default=50, type=int)
+    parser.add_argument('--epochs', default=80, type=int)
     parser.add_argument('--lr_drop', default=40, type=int)
     parser.add_argument('--lr_drop_epochs', default=None, type=int, nargs='+')
     parser.add_argument('--clip_max_norm', default=0.1, type=float,
@@ -112,7 +112,7 @@ def get_args_parser():
     parser.add_argument('--da_loss_coef', default=1, type=float)
     parser.add_argument('--wasserstein_loss_coef', default=1, type=float)
     parser.add_argument('--instance_loss_coef', default=1, type=float)
-    parser.add_argument('--kl_loss_coef', default=1, type=float)
+    parser.add_argument('--kl_loss_coef', default=1, type=float) #kl
     ####
     
     # dataset parameters
