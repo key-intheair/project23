@@ -301,6 +301,9 @@ def evaluate(model, criterion, postprocessors, data_loader, base_ds, device, out
                 results, outputs, orig_target_sizes, target_sizes)
         res = {target['image_id'].item(): output for target,
                output in zip(targets, results)} 
+        res_path = "/content/drive/MyDrive/res.txt"
+        with open(res_path,"a") as file :
+            file.write(res) 
      
         if coco_evaluator is not None:
             coco_evaluator.update(res)
