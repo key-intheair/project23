@@ -64,14 +64,6 @@ def swd(source_features, target_features, M=256):
     return loss 
 ####------------------------------------------------------------------------------------------------
 
-####------------------------------------------------------------------------------------------------
-# loss_kl = y_true(log(y_true/y_pred))
-#import numpy as np
-#from scipy.special import kl_div
-#loss = kl_div(source_features, target_features).sum()
-
-
-
 def kl_div(source_features, target_features) :
     import torch.nn.functional as F
 
@@ -301,10 +293,26 @@ def evaluate(model, criterion, postprocessors, data_loader, base_ds, device, out
                 results, outputs, orig_target_sizes, target_sizes)
         res = {target['image_id'].item(): output for target,
                output in zip(targets, results)} 
-        res_path = "/content/drive/MyDrive/res.txt"
-        with open(res_path,"a") as file :
-            file.write(res) 
         print(res)
+        #res_path = "/content/drive/MyDrive/res.txt"
+        #with open(res_path,"a") as file :
+        #    file.write(res) 
+        #print(res)
+        
+        #출력경로,파일이름 설정
+        output_dir = Path("/content/drive/MyDrive/log_kl_0929")
+        name_tag = "res.print"
+        #
+        res_for_json = copy.deepcopy(res)
+
+        for item  in res_for_json :
+            print(item)
+            res_for_json[item]['scores'] = res_for_json[item]['scores'].cpu().numpy().tolist()
+            res_for_json[item]['labels'] = res_for_json[item]['labels'].cpu().numpy().tolist()
+            res_for_json[item]['boxes']  = res_for_json[item]['boxes'].cpu().numpy().tolist()
+
+        with(output_dir / f"log_{name_tag}.json".open("a") as f):
+            f.write(json.dumps(res_for_json)+"\n")
      
         if coco_evaluator is not None:
             coco_evaluator.update(res)
