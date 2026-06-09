@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: couple-app
+    env: node
+    rootDir: couple-app
+    buildCommand: npm install && npm run install:all && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
