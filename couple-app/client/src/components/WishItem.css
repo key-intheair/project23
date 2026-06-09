@@ -1,0 +1,107 @@
+.wish-item {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: 14px 16px;
+  transition: all 0.2s ease;
+}
+
+.wish-item--accepted {
+  background: var(--color-accepted-bg);
+  border-color: var(--color-accepted-border);
+}
+
+.wish-item--rejected {
+  background: var(--color-rejected-bg);
+  border-color: var(--color-rejected-border);
+  opacity: 0.7;
+}
+
+.wish-item__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.wish-item__owner {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--color-primary);
+  background: var(--color-surface-2);
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+.wish-item--rejected .wish-item__owner {
+  color: var(--color-text-disabled);
+  background: var(--color-rejected-bg);
+}
+
+.wish-item__status {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 10px;
+  border-radius: 10px;
+}
+
+.wish-item__status--pending {
+  color: #B8860B;
+  background: #FFF8DC;
+  border: 1px solid #F0D060;
+}
+
+.wish-item__status--accepted {
+  color: var(--color-accepted-text);
+  background: var(--color-accepted-bg);
+  border: 1px solid var(--color-accepted-border);
+}
+
+.wish-item__status--rejected {
+  color: var(--color-rejected-text);
+  background: var(--color-rejected-bg);
+  border: 1px solid var(--color-rejected-border);
+}
+
+.wish-item__content {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text);
+  word-break: keep-all;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+.wish-item--rejected .wish-item__content {
+  color: var(--color-text-disabled);
+  text-decoration: line-through;
+}
+
+.wish-item__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.wish-item__date {
+  font-size: 11px;
+  color: var(--color-text-disabled);
+}
+
+.wish-item__actions {
+  display: flex;
+  gap: 8px;
+}
+
+.wish-item__reject {
+  color: var(--color-text-muted);
+  border-color: var(--color-border);
+}
+.wish-item__reject:hover:not(:disabled) {
+  color: #C94A62;
+  border-color: #C94A62;
+  background: #FFF0F3;
+}
