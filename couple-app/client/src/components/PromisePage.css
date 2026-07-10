@@ -1,0 +1,45 @@
+.promise-stats {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-primary);
+  background: var(--color-surface-2);
+  padding: 4px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--color-border);
+}
+
+.add-form {
+  margin-bottom: 20px;
+}
+
+.add-form__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.add-form__count {
+  font-size: 12px;
+  color: var(--color-text-disabled);
+}
+
+.promise-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.promise-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.promise-section__label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-kept-text);
+  padding: 0 4px;
+  margin-bottom: 2px;
+}

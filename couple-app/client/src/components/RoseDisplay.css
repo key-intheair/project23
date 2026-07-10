@@ -1,0 +1,155 @@
+.rose-page {
+  padding-top: 0;
+}
+
+.rose-summary {
+  margin-bottom: 16px;
+}
+
+.rose-summary__empty {
+  font-size: 16px;
+  color: var(--color-text-muted);
+  text-align: center;
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+
+.rose-summary__count {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  margin-bottom: 4px;
+}
+
+.rose-summary__plus {
+  color: var(--color-text-muted);
+  font-size: 18px;
+}
+
+.rose-summary__total {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  margin-bottom: 16px;
+}
+
+.rose-summary__equation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px;
+  background: var(--color-bg);
+  border-radius: 10px;
+  flex-wrap: wrap;
+}
+
+.rose-eq-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.rose-eq-icon {
+  font-size: 20px;
+}
+
+.rose-eq-label {
+  font-size: 10px;
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
+.rose-eq-arrow {
+  font-size: 16px;
+  color: var(--color-text-muted);
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+.full-roses {
+  margin-bottom: 16px;
+}
+
+.full-roses__label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  margin-bottom: 12px;
+}
+
+.full-roses__row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.full-rose-icon {
+  animation: rosePop 0.4s ease-out;
+}
+
+@keyframes rosePop {
+  0%   { transform: scale(0) rotate(-10deg); opacity: 0; }
+  70%  { transform: scale(1.1) rotate(3deg); opacity: 1; }
+  100% { transform: scale(1) rotate(0); opacity: 1; }
+}
+
+.petal-garden {
+  margin-bottom: 16px;
+}
+
+.petal-garden__label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  margin-bottom: 14px;
+  text-align: center;
+}
+
+.petal-row {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+.petal-slot {
+  transition: transform 0.2s ease;
+}
+
+.petal-slot--filled svg ellipse {
+  filter: drop-shadow(0 2px 4px rgba(232, 99, 122, 0.3));
+}
+
+.petal-slot--new {
+  animation: petalBloom 0.5s ease-out;
+}
+
+@keyframes petalBloom {
+  0%   { transform: scale(0) rotate(-15deg); opacity: 0; }
+  60%  { transform: scale(1.2) rotate(5deg); opacity: 1; }
+  100% { transform: scale(1) rotate(0); opacity: 1; }
+}
+
+.petal-progress {
+  height: 6px;
+  background: var(--color-petal-empty);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.petal-progress__bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-petal), var(--color-primary));
+  border-radius: 3px;
+  transition: width 0.5s ease;
+}
+
+.petal-count {
+  text-align: center;
+  font-size: 13px;
+  color: var(--color-text-muted);
+  font-weight: 600;
+}
